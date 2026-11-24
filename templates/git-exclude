@@ -1,0 +1,8 @@
+# Configuración local de Obsidian (no subir a GitHub Wiki)
+.obsidian/
+.trash/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini

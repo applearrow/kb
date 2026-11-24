@@ -1,0 +1,14 @@
+# macOS / OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+
+# Obsidian (en caso de abrir cualquier carpeta local con Obsidian)
+.obsidian/
+.trash/
+
+# Clon local opcional de la wiki dentro del proyecto
+wiki/
+kb.wiki/
