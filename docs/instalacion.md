@@ -38,8 +38,11 @@ Desde la raíz de este proyecto, ejecuta:
 # Por HTTPS en ~/kb-wiki (por defecto)
 ./scripts/setup-wiki.sh
 
-# Por SSH en una ruta personalizada, copiando plantillas si faltan
-./scripts/setup-wiki.sh --ssh --dir ~/kb-wiki --with-templates
+# Instalación completa: SSH + plantillas + plugin Obsidian Git + abrir en Obsidian
+./scripts/setup-wiki.sh --ssh --dir ~/kb-wiki --with-templates --with-git-plugin --open
+
+# O equivalente con just:
+just install --with-git-plugin --open
 ```
 
 Opciones disponibles en `scripts/setup-wiki.sh`:
@@ -51,6 +54,8 @@ Opciones disponibles en `scripts/setup-wiki.sh`:
 | `--ssh` | Usa `git@github.com:applearrow/kb.wiki.git`. |
 | `--use-gitignore` | Además de `.git/info/exclude`, escribe las exclusiones en `.gitignore` del vault (útil si clonas la wiki en varios equipos). |
 | `--with-templates` | Copia `Home.md`, `_Sidebar.md` y `_Footer.md` desde `templates/wiki/` si no existen. |
+| `--with-git-plugin` | Descarga, habilita y preconfigura el plugin comunitario **Obsidian Git** (`Vinzent03/obsidian-git`). |
+| `--open` | Abre el vault directamente en Obsidian al terminar. |
 
 ### Método manual
 
@@ -122,6 +127,18 @@ GitHub Wiki **no entiende** `![[imagen.png]]` de Obsidian, pero sí el Markdown 
 Puedes sincronizar usando el terminal (`./scripts/sync-wiki.sh`) o directamente desde dentro de Obsidian con el plugin comunitario **Git** (*Obsidian Git*).
 
 #### Instalar y configurar Obsidian Git
+
+**Opción automática (recomendada):**
+
+```bash
+just install-git-plugin
+# o directamente:
+./scripts/setup-wiki.sh --with-git-plugin
+```
+
+Esto descarga la versión pineada (`v2.44.0`) del plugin en `.obsidian/plugins/obsidian-git/` verificando el checksum **SHA-256** de cada archivo (`main.js`, `manifest.json`, `styles.css`), aplica la configuración recomendada en `data.json` y lo activa en `community-plugins.json`. La primera vez que abras el vault en Obsidian, solo tendrás que pulsar **Trust author and enable plugins**.
+
+**Opción manual desde la UI:**
 
 1. En Obsidian ve a **Settings → Community plugins** y activa **Community plugins**.
 2. Pulsa **Browse**, busca **Git** (autor: *Vinzent / Denis Olehov*), instálalo y actívalo.

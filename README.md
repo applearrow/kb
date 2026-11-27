@@ -32,20 +32,22 @@ Local:
 ### Opción A — Instalación automática (recomendada)
 
 ```bash
-./scripts/setup-wiki.sh
+./scripts/setup-wiki.sh --with-git-plugin --open
+# O usando just:
+just install --with-git-plugin --open
 ```
 
 El script:
 1. Clona `https://github.com/applearrow/kb.wiki.git` en `~/kb-wiki` (puedes cambiar la ruta con `--dir` o usar SSH con `--ssh`).
 2. Añade `.obsidian/` y archivos del sistema operativo a `.git/info/exclude`.
 3. Crea la carpeta `images/`.
-4. Genera `.obsidian/app.json` preconfigurado con enlaces Markdown estándar y carpeta de adjuntos `images`.
+4. Genera o actualiza (merge) `.obsidian/app.json` con enlaces Markdown estándar y carpeta de adjuntos `images`.
+5. Registra el vault automáticamente en Obsidian (y lo abre directamente si pasas `--open`).
+6. Con `--with-git-plugin`, instala y preconfigura el plugin comunitario **Obsidian Git** (solo tendrás que pulsar **"Trust author and enable plugins"** la primera vez que abras el vault).
 
-Después, abre **Obsidian → Open folder as vault → `~/kb-wiki`**.
-
-> Si quieres inicializar además páginas base (`Home.md`, `_Sidebar.md`, `_Footer.md`) cuando aún no existan, ejecuta:
+> Si quieres inicializar además páginas base (`Home.md`, `_Sidebar.md`, `_Footer.md`) cuando aún no existan, añade `--with-templates`:
 > ```bash
-> ./scripts/setup-wiki.sh --with-templates
+> ./scripts/setup-wiki.sh --with-templates --with-git-plugin --open
 > ```
 
 ### Opción B — Instalación manual
